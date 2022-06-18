@@ -11,7 +11,7 @@
 <img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
 <!-- End -->
 
-<img src="./src/ss/hasil.jpeg" alt="Kepuasan" />
+<img src="./assets/ss/hasil.png" alt="Hasil" />
 <!-- Garis Lurus -->
 <img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
 <!-- End -->
@@ -40,10 +40,13 @@
 <br>
 
 - [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+
 - [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
-- [Bootstrap](https://getbootstrap.com/)
+
 - [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
 - [Git](https://git-scm.com/)
+
 - [vs-code](https://code.visualstudio.com/)
 
 
