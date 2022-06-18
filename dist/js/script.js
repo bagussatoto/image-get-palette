@@ -7,7 +7,8 @@ if ('src' in localStorage) {
 } else {
     localStorage.setItem(
         'src',
-        './assets/img/lidya-nada-tXz6g8JYYoI-unsplash.jpg'
+        './assets/img/owner.jpg'
+
     );
     imagePreview.src = localStorage.getItem('src');
 }
