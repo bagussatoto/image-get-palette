@@ -96,13 +96,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/abinoval/image-to-palette.git"
+    "url": "git+https://github.com/bagussatoto/image-get-palette.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/abinoval/image-to-palette/issues"
+    "url": "https://github.com/bagussatoto/image-get-palette/issues"
   },
-  "homepage": "https://github.com/abinoval/image-to-palette#readme"
+  "homepage": "https://github.com/bagussatoto/image-get-palette#readme"
+  
 }
