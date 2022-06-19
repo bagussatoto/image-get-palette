@@ -24,13 +24,13 @@
 <img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
 <!-- End -->
 
-## 👦🏽 Siapa pembuat aplikasi ini?
+## 👦🏽 Who created this application?
 
-| Profile        |  Keterangan                      |
+| Profile        |  Information                      |
 |----------------|----------------------------------|
-| Nama           | Bagus Budi Satoto                |
-| Jurusan        | S1 - Informatika                 |
-| Kampus         | Universitas Amikom Yogyakarta    |
+| Name           | Bagus Budi Satoto                |
+| Major        | S1 - Informatika                 |
+| Campus         | Universitas Amikom Yogyakarta    |
 
 <!-- Garis Lurus -->
 <img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
@@ -54,7 +54,7 @@
 <img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
 <!-- End -->
 
-## 🔗 Cara Install
+## 🔗 How to Install
 <br>
 
 - <code>git clone ↆↆ </code>
@@ -84,18 +84,18 @@
 
 
 
-## 📌 Request Fitur Baru dan Pelaporan Bug
+## 📌 New Feature Request and Bug Report
 
-Anda dapat meminta fitur baru maupun melaporkan bug melalui menu [**issues**](https://github.com/bagussatoto/image-get-palette/issues) yang sudah disediakan oleh GitHub (lihat menu di atas), posting issues baru dan kita akan berdiskusi disana.
+You can request new features or report bugs through the [**issues**](https://github.com/bagussatoto/image-get-palette/issues) menu provided by GitHub (see menu above), post new issues and we will discuss there. 
 
 <!-- Garis Lurus -->
 <img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
 <!-- End -->
 
-## 🛒 Berkontribusi
+## 🛒 Contribute
 
-Siapapun dapat berkontribusi pada proyek ini mulai dari pemrograman, pembuakan buku manual, sampai dengan mengenalkan produk ini kepada mahasiswa 
-untuk belajar agar mengurangi kesenjangan pendidikan teknologi dengan cara membuat postingan issue di repository ini.
+Anyone can contribute to this project from programming, opening a manual, to introducing this product to students
+to learn to reduce the technology education gap by posting an issue in this repository.
 
 <!-- Garis Lurus -->
 <img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
