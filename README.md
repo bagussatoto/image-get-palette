@@ -17,7 +17,7 @@
 <!-- End -->
 
  ## ✅ About 
- > ### This website is a website for generating colors/palettes from inputted images.
+ > ### This website is a website for generating colors / palettes from inputted images.
 
 
 <!-- Garis Lurus -->
@@ -29,8 +29,8 @@
 | Profile        |  Information                      |
 |----------------|----------------------------------|
 | Name           | Bagus Budi Satoto                |
-| Major        | S1 - Informatika                 |
-| Campus         | Universitas Amikom Yogyakarta    |
+| Major        | Bachelor of Informatics                |
+| Campus         |  Amikom University Yogyakarta    |
 
 <!-- Garis Lurus -->
 <img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
