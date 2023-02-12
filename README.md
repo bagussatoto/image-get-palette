@@ -94,7 +94,7 @@ You can request new features or report bugs through the [**issues**](https://git
 
 ## 🛒 Contribute
 
-Anyone can contribute to this project from programming, opening a manual, to introducing this product to students
+Anyone can [contribute](https://github.com/bagussatoto/image-get-palette/blob/main/CONTRIBUTING.md) to this project from programming, opening a manual, to introducing this product to students
 to learn to reduce the technology education gap by posting an issue in this repository.
 
 <!-- Garis Lurus -->
