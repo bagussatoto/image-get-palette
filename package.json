@@ -8,7 +8,7 @@
   "main": "tailwind.config.js",
   "dependencies": {
     "acorn": "^8.0.0",
-    "acorn-node": "^1.8.2",
+    "acorn-node": "^2.0.0",
     "acorn-walk": "^7.2.0",
     "ansi-styles": "^4.3.0",
     "anymatch": "^3.1.2",
