@@ -17,7 +17,7 @@
     "binary-extensions": "^2.2.0",
     "braces": "^3.0.2",
     "browserslist": "^4.19.1",
-    "callsites": "^3.1.0",
+    "callsites": "^4.0.0",
     "camelcase-css": "^2.0.1",
     "caniuse-lite": "^1.0.30001309",
     "chalk": "^4.1.2",
