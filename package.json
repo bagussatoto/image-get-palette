@@ -24,7 +24,7 @@
     "chokidar": "^3.5.3",
     "color-convert": "^2.0.1",
     "color-name": "^2.0.0",
-    "cosmiconfig": "^7.0.1",
+    "cosmiconfig": "^8.0.0",
     "cssesc": "^3.0.0",
     "daisyui": "^1.25.4",
     "defined": "^1.0.0",
