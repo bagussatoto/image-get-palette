@@ -42,7 +42,7 @@
     "function-bind": "^1.1.1",
     "glob-parent": "^6.0.2",
     "has": "^1.0.3",
-    "has-flag": "^4.0.0",
+    "has-flag": "^5.0.0",
     "import-fresh": "^3.3.0",
     "is-arrayish": "^0.3.0",
     "is-binary-path": "^2.1.0",
