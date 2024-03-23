@@ -61,7 +61,7 @@
     "node-releases": "^2.0.1",
     "normalize-path": "^3.0.0",
     "normalize-range": "^0.1.2",
-    "object-hash": "^2.2.0",
+    "object-hash": "^3.0.0",
     "parent-module": "^1.0.1",
     "parse-json": "^5.2.0",
     "path-parse": "^1.0.7",
