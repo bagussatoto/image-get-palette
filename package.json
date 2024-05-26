@@ -45,7 +45,7 @@
     "has-flag": "^5.0.0",
     "import-fresh": "^3.3.0",
     "is-arrayish": "^0.3.0",
-    "is-binary-path": "^2.1.0",
+    "is-binary-path": "^3.0.0",
     "is-core-module": "^2.8.1",
     "is-extglob": "^2.1.1",
     "is-glob": "^4.0.3",
