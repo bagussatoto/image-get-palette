@@ -63,7 +63,7 @@
     "normalize-range": "^0.1.2",
     "object-hash": "^3.0.0",
     "parent-module": "^3.0.0",
-    "parse-json": "^5.2.0",
+    "parse-json": "^8.1.0",
     "path-parse": "^1.0.7",
     "path-type": "^4.0.0",
     "picocolors": "^1.0.0",
