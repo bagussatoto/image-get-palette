@@ -71,7 +71,7 @@
     "postcss": "^8.4.6",
     "postcss-js": "^4.0.0",
     "postcss-load-config": "^6.0.1",
-    "postcss-nested": "^5.0.6",
+    "postcss-nested": "^6.0.1",
     "postcss-selector-parser": "^6.0.9",
     "postcss-value-parser": "^4.2.0",
     "queue-microtask": "^1.2.3",
