@@ -7,7 +7,7 @@
   "version": "1.0.0",
   "main": "tailwind.config.js",
   "dependencies": {
-    "acorn": "^8.0.0",
+    "acorn": "^8.12.1",
     "acorn-node": "^2.0.0",
     "acorn-walk": "^8.0.0",
     "ansi-styles": "^6.0.0",
