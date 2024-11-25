@@ -33,7 +33,7 @@
     "dlv": "^1.1.3",
     "electron-to-chromium": "^1.4.66",
     "error-ex": "^1.3.2",
-    "escalade": "^3.1.1",
+    "escalade": "^3.2.0",
     "escape-string-regexp": "^5.0.0",
     "fast-glob": "^3.2.11",
     "fastq": "^1.13.0",
