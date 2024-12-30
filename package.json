@@ -21,7 +21,7 @@
     "camelcase-css": "^2.0.1",
     "caniuse-lite": "^1.0.30001309",
     "chalk": "^5.0.0",
-    "chokidar": "^3.5.3",
+    "chokidar": "^4.0.3",
     "color-convert": "^2.0.1",
     "color-name": "^2.0.0",
     "cosmiconfig": "^9.0.0",
