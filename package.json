@@ -51,7 +51,7 @@
     "is-glob": "^4.0.3",
     "is-number": "^7.0.0",
     "js-tokens": "^9.0.0",
-    "json-parse-even-better-errors": "^3.0.0",
+    "json-parse-even-better-errors": "^4.0.0",
     "lilconfig": "^3.0.0",
     "lines-and-columns": "^2.0.0",
     "merge2": "^1.4.1",
