@@ -75,6 +75,35 @@
         return Math.min(max, Math.max(min, parsed));
     }
 
+    function exportPaletteAsCSS(dominantColor, paletteColors, format = 'hex') {
+        const activeFormat = normalizeFormat(format);
+        const lines = [];
+
+        if (Array.isArray(dominantColor)) {
+            lines.push(`  --color-dominant: ${formatColor(dominantColor, activeFormat)};`);
+        }
+
+        if (Array.isArray(paletteColors)) {
+            paletteColors.forEach((color, index) => {
+                lines.push(`  --color-palette-${index + 1}: ${formatColor(color, activeFormat)};`);
+            });
+        }
+
+        return `:root {\n${lines.join('\n')}\n}\n`;
+    }
+
+    function exportPaletteAsJSON(dominantColor, paletteColors, format = 'hex') {
+        const activeFormat = normalizeFormat(format);
+        const payload = {
+            format: activeFormat,
+            dominant: Array.isArray(dominantColor) ? formatColor(dominantColor, activeFormat) : null,
+            palette: Array.isArray(paletteColors)
+                ? paletteColors.map((color) => formatColor(color, activeFormat))
+                : [],
+        };
+        return JSON.stringify(payload, null, 2) + '\n';
+    }
+
     return {
         RGBToHex,
         RGBToString,
@@ -82,5 +111,7 @@
         normalizeFormat,
         formatColor,
         clampCount,
+        exportPaletteAsCSS,
+        exportPaletteAsJSON,
     };
 });

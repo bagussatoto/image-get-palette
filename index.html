@@ -84,7 +84,11 @@
 				<input type="file" id="image-upload" accept="image/*" class="absolute opacity-0 pointer-events-none">
 
 				<div class="grid md:grid-cols-2 gap-10 mt-10">
-					<img class="rounded-xl" id="image-preview" alt="Preview of the uploaded image">
+					<div id="drop-zone"
+						class="rounded-xl border-2 border-dashed border-base-300 p-3 transition-colors duration-150 cursor-pointer flex flex-col items-center justify-center gap-3">
+						<img class="rounded-lg" id="image-preview" alt="Preview of the uploaded image">
+						<p class="text-xs text-base-content/60 text-center">Drag &amp; drop an image here, or click to browse</p>
+					</div>
 					<div class="space-y-4">
 						<div class="flex flex-wrap items-center justify-between gap-4">
 							<h2 class="uppercase font-bold tracking-widest text-base-content/50">Dominant Color</h2>
@@ -107,6 +111,15 @@
 						</div>
 						<div class="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4" id="palette">
 							Wait...
+						</div>
+						<div class="pt-2 space-y-2">
+							<h2 class="uppercase font-bold tracking-widest text-base-content/50 text-xs">Export Palette</h2>
+							<div class="flex flex-wrap gap-2" id="export-actions">
+								<button type="button" class="btn btn-sm btn-outline" data-export-type="css" data-export-mode="copy">Copy CSS</button>
+								<button type="button" class="btn btn-sm btn-outline" data-export-type="css" data-export-mode="download">Download .css</button>
+								<button type="button" class="btn btn-sm btn-outline" data-export-type="json" data-export-mode="copy">Copy JSON</button>
+								<button type="button" class="btn btn-sm btn-outline" data-export-type="json" data-export-mode="download">Download .json</button>
+							</div>
 						</div>
 					</div>
 				</div>
