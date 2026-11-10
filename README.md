@@ -1,111 +1,104 @@
-<p align="center">
-<img align="center" src="http://ForTheBadge.com/images/badges/built-with-love.svg"> <img align="center" src="http://ForTheBadge.com/images/badges/uses-html.svg"> <img align="center" src="http://ForTheBadge.com/images/badges/makes-people-smile.svg"> <img align="center" src="http://ForTheBadge.com/images/badges/built-by-developers.svg">
-</p>
+# Image to Palette
 
-<!-- Garis Lurus -->
-<img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
-<!-- End -->
+A lightweight web application that extracts the dominant color and a customizable color palette from any uploaded image directly in the browser.
 
-<h1 align="center">IMAGE GET PALETTE</h1>
-<!-- Garis Lurus -->
-<img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
-<!-- End -->
+**Live Demo:** [imagetopalette.netlify.app](https://imagetopalette.netlify.app/)
 
-<img src="./assets/ss/hasil.png" alt="Hasil" />
-<!-- Garis Lurus -->
-<img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
-<!-- End -->
+![Image to Palette Preview](./assets/ss/hasil.png)
 
- ## ✅ About 
- > ### This website is a website for generating colors / palettes from inputted images.
+---
 
+## Features
 
-<!-- Garis Lurus -->
-<img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
-<!-- End -->
+- **Dominant Color & Palette Extraction** — Automatically extracts the dominant color and a palette of 2 to 10 colors using ColorThief.
+- **Multiple Color Formats (HEX / RGB / HSL)** — Switch output formats on the fly and copy any color value to your clipboard with a single click.
+- **Light & Dark Mode** — Automatically follows system color-scheme preferences and persists your selected theme in `localStorage`.
+- **Client-Side Image Persistence** — Previews uploaded images locally without server uploads and remembers your latest image and preferences.
 
-## 👦🏽 Who created this application?
+---
 
-| Profile        |  Information                      |
-|----------------|----------------------------------|
-| Name           | Bagus Budi Satoto                |
-| Major        | Bachelor of Informatics                |
-| Campus         |  University Amikom  Yogyakarta    |
+## Tech Stack
 
-<!-- Garis Lurus -->
-<img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
-<!-- End -->
+- **Markup & Styling:** HTML5, [Tailwind CSS](https://tailwindcss.com/), [DaisyUI](https://daisyui.com/), [Boxicons](https://boxicons.com/)
+- **Logic & Color Extraction:** Vanilla JavaScript, [ColorThief](https://lokeshdhakar.com/projects/color-thief/)
+- **Tooling & Testing:** Node.js (`node --test`), GitHub Actions CI
 
-## 📊 Languages and Tools
-<br>
+---
 
-- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+## Project Structure
 
-- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+```text
+image-get-palette/
+├── .github/workflows/   # CI workflow (unit tests & CSS/JS build)
+├── assets/              # Favicons, sample image, and README screenshot
+├── dist/                # Generated CSS & JS bundles loaded by index.html
+├── scripts/             # Build helper scripts (build-js.js)
+├── src/
+│   ├── css/             # Tailwind CSS entrypoint
+│   └── js/              # Source JavaScript (script.js, utils.js)
+├── tests/               # Unit tests (utils.test.js)
+├── index.html           # Application entry page
+├── package.json         # Scripts and devDependencies
+└── tailwind.config.js   # Tailwind CSS & DaisyUI configuration
+```
 
-- [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+---
 
-- [Git](https://git-scm.com/)
+## Getting Started
 
-- [vs-code](https://code.visualstudio.com/)
+### Prerequisites
 
+- [Node.js](https://nodejs.org/) (v18+ recommended; `node --test` is used for unit tests)
+- npm
 
-<!-- Garis Lurus -->
-<img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
-<!-- End -->
+### Installation
 
-## 🔗 How to Install
-<br>
+```bash
+git clone https://github.com/bagussatoto/image-get-palette.git
+cd image-get-palette
+npm install
+```
 
-- <code>git clone ↆↆ </code>
-  
-  ```bash
-  git clone https://github.com/bagussatoto/image-get-palette.git
-  ``` 
-  
-- <code>cd image-get-palette</code>
-- <code>npm install</code>
-- <code>npm run dev</code> (watch and rebuild the Tailwind CSS while editing)
-- <code>npm run minify</code> (builds <code>src/js</code> into <code>dist/js</code> and the minified CSS, used by CI)
-- <code>npm test</code> (runs unit tests)
-- Edit JavaScript in <code>src/js/</code>; <code>dist/js/</code> is generated by <code>npm run minify</code> / <code>npm run dev</code>.
-- Serve the folder with a local web server, for example <code>npx serve .</code>, then open the URL it prints.
-  Do not open <code>index.html</code> directly via <code>file://</code>, because the browser blocks reading image pixels (CORS) and the palette cannot be generated.
+### Running Locally
 
-<!-- Garis Lurus -->
-<img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
-<!-- End -->
+Serve the project over HTTP using a local static server:
 
+```bash
+npx serve .
+```
 
-##  🚫 Demo 
-- 🚫 [Demo](https://imagetopalette.netlify.app/)
+Open the local URL printed in your terminal.
 
+> **Note:** Do not open `index.html` directly via the `file://` protocol. Browsers block reading image pixel data across `file://` origins (CORS), which prevents ColorThief from generating palettes.
 
+### Available Scripts
 
-<!-- Garis Lurus -->
-<img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
-<!-- End -->
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Copies `src/js` to `dist/js` and watches `src/css/style.css` for changes |
+| `npm run minify` | Builds `src/js` to `dist/js` and generates minified `dist/css/style.css` |
+| `npm run build:js` | Copies JavaScript source files from `src/js/` to `dist/js/` |
+| `npm run build:css` | Compiles and minifies Tailwind CSS output to `dist/css/style.css` |
+| `npm test` | Runs unit tests in `tests/` using Node's built-in test runner |
 
+Edit JavaScript source files in `src/js/` rather than `dist/js/`, and run `npm run minify` and `npm test` before committing.
 
+---
 
+## Contributing & Issue Reporting
 
-## 📌 New Feature Request and Bug Report
+Contributions, bug reports, and feature suggestions are welcome:
 
-You can request new features or report bugs through the [**issues**](https://github.com/bagussatoto/image-get-palette/issues) menu provided by GitHub (see menu above), post new issues and we will discuss there. 
+- Report bugs or request features via [GitHub Issues](https://github.com/bagussatoto/image-get-palette/issues).
+- Follow the contribution guidelines in [CONTRIBUTING.md](./CONTRIBUTING.md) when submitting a Pull Request.
 
-<!-- Garis Lurus -->
-<img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
-<!-- End -->
+---
 
-## 🛒 Contribute
+## Author
 
-Anyone can [contribute](https://github.com/bagussatoto/image-get-palette/blob/main/CONTRIBUTING.md) to this project from programming, opening a manual, to introducing this product to students
-to learn to reduce the technology education gap by posting an issue in this repository.
+**Bagus Budi Satoto** — Bachelor of Informatics, University Amikom Yogyakarta  
+GitHub: [@bagussatoto](https://github.com/bagussatoto)
 
-<!-- Garis Lurus -->
-<img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
-<!-- End -->
+## License
 
-> 🧑🏽‍💻 | [BAGUS BUDI SATOTO ](http://github.com/bagussatoto)
-<br>
-
+Licensed under the [MIT License](./LICENSE).
