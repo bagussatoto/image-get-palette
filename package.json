@@ -10,10 +10,12 @@
     "tailwindcss": "^3.4.17"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx tailwindcss -i ./src/css/style.css -o ./dist/css/style.css --watch",
-    "watch": "npx tailwindcss -i ./src/css/style.css -o ./dist/css/style.css --watch",
-    "minify": "npx tailwindcss -i ./src/css/style.css -o ./dist/css/style.css --minify"
+    "test": "node --test \"tests/**/*.test.js\"",
+    "build:js": "node scripts/build-js.js",
+    "build:css": "npx tailwindcss -i ./src/css/style.css -o ./dist/css/style.css --minify",
+    "dev": "npm run build:js && npx tailwindcss -i ./src/css/style.css -o ./dist/css/style.css --watch",
+    "watch": "npm run dev",
+    "minify": "npm run build:js && npm run build:css"
   },
   "repository": {
     "type": "git",
