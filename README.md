@@ -1,111 +1,139 @@
-<p align="center">
-<img align="center" src="http://ForTheBadge.com/images/badges/built-with-love.svg"> <img align="center" src="http://ForTheBadge.com/images/badges/uses-html.svg"> <img align="center" src="http://ForTheBadge.com/images/badges/makes-people-smile.svg"> <img align="center" src="http://ForTheBadge.com/images/badges/built-by-developers.svg">
-</p>
+<div align="center">
 
-<!-- Garis Lurus -->
-<img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
-<!-- End -->
+# Image to Palette
 
-<h1 align="center">IMAGE GET PALETTE</h1>
-<!-- Garis Lurus -->
-<img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
-<!-- End -->
+**Extract dominant colors and customizable palettes from any image — 100% client-side in your browser.**
 
-<img src="./assets/ss/hasil.png" alt="Hasil" />
-<!-- Garis Lurus -->
-<img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
-<!-- End -->
+[![Build CSS CI](https://github.com/bagussatoto/image-get-palette/actions/workflows/jekyll.yml/badge.svg)](https://github.com/bagussatoto/image-get-palette/actions/workflows/jekyll.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+[![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Live Demo](https://img.shields.io/badge/Demo-Netlify-00C7B7?logo=netlify&logoColor=white)](https://imagetopalette.netlify.app/)
 
- ## ✅ About 
- > ### This website is a website for generating colors / palettes from inputted images.
+[Live Demo](https://imagetopalette.netlify.app/) · [Features](#features) · [Getting Started](#getting-started) · [Project Structure](#project-structure) · [Contributing](#contributing)
 
+![Image to Palette Preview](./assets/ss/hasil.png)
 
-<!-- Garis Lurus -->
-<img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
-<!-- End -->
+</div>
 
-## 👦🏽 Who created this application?
+---
 
-| Profile        |  Information                      |
-|----------------|----------------------------------|
-| Name           | Bagus Budi Satoto                |
-| Major        | Bachelor of Informatics                |
-| Campus         |  University Amikom  Yogyakarta    |
+## Overview
 
-<!-- Garis Lurus -->
-<img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
-<!-- End -->
+**Image to Palette** is a lightweight, zero-backend web application built with Vanilla JavaScript, Tailwind CSS, DaisyUI, and ColorThief. Upload or drop an image to instantly inspect its dominant color and extract a clean palette, switch between **HEX**, **RGB**, and **HSL** formats, copy individual swatches, or export the entire palette to **CSS** or **JSON**.
 
-## 📊 Languages and Tools
-<br>
+All image processing runs locally inside your browser — no images are ever uploaded to a server.
 
-- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+---
 
-- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+## Features
 
-- [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+| Feature | Description |
+| --- | --- |
+| **Dominant Color & Palette** | Extracts the primary dominant color and a palette of **2 to 10** colors via ColorThief. |
+| **HEX / RGB / HSL Switcher** | Toggle output formats on the fly; both preview labels and copied values update immediately. |
+| **One-Click Copy** | Click any swatch value to copy it to your clipboard (with `execCommand` fallback for older contexts). |
+| **Drag & Drop Upload** | Drag and drop images directly onto the preview area, or click to select a file with `image/*` validation. |
+| **CSS & JSON Export** | Copy `:root` CSS custom properties or structured JSON, or download `palette.css` / `palette.json`. |
+| **Light & Dark Mode** | Syncs with OS `prefers-color-scheme` on first visit and persists manual theme selection. |
+| **Local Persistence** | Remembers your last image, color format, palette size, and theme safely in `localStorage`. |
 
-- [Git](https://git-scm.com/)
+---
 
-- [vs-code](https://code.visualstudio.com/)
+## Tech Stack
 
+- **Frontend:** HTML5, [Tailwind CSS v3](https://tailwindcss.com/), [DaisyUI v4](https://daisyui.com/), [Boxicons](https://boxicons.com/)
+- **Color Extraction:** [ColorThief](https://lokeshdhakar.com/projects/color-thief/) (loaded via CDN)
+- **Tooling & Testing:** [Node.js](https://nodejs.org/) (`node --test`), [GitHub Actions](.github/workflows/jekyll.yml)
 
-<!-- Garis Lurus -->
-<img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
-<!-- End -->
+---
 
-## 🔗 How to Install
-<br>
+## Project Structure
 
-- <code>git clone ↆↆ </code>
-  
-  ```bash
-  git clone https://github.com/bagussatoto/image-get-palette.git
-  ``` 
-  
-- <code>cd image-get-palette</code>
-- <code>npm install</code>
-- <code>npm run dev</code> (watch and rebuild the Tailwind CSS while editing)
-- <code>npm run minify</code> (builds <code>src/js</code> into <code>dist/js</code> and the minified CSS, used by CI)
-- <code>npm test</code> (runs unit tests)
-- Edit JavaScript in <code>src/js/</code>; <code>dist/js/</code> is generated by <code>npm run minify</code> / <code>npm run dev</code>.
-- Serve the folder with a local web server, for example <code>npx serve .</code>, then open the URL it prints.
-  Do not open <code>index.html</code> directly via <code>file://</code>, because the browser blocks reading image pixels (CORS) and the palette cannot be generated.
+```text
+image-get-palette/
+├── .github/workflows/   # GitHub Actions CI (runs unit tests and production build)
+├── assets/
+│   ├── ico/             # Favicons and touch/tile icons
+│   ├── img/             # Default sample photo
+│   └── ss/              # Application screenshot
+├── dist/
+│   ├── css/             # Compiled & minified Tailwind CSS bundle
+│   └── js/              # Built JavaScript files referenced by index.html
+├── scripts/
+│   └── build-js.js      # Copies source JS files from src/js/ to dist/js/
+├── src/
+│   ├── css/             # Tailwind CSS entrypoint (style.css)
+│   └── js/              # Application source code (script.js, utils.js)
+├── tests/
+│   └── utils.test.js    # Unit tests for color conversion, clamping, and exporters
+├── index.html           # Main HTML entry page
+├── package.json         # npm scripts and devDependencies
+└── tailwind.config.js   # Tailwind CSS & DaisyUI configuration
+```
 
-<!-- Garis Lurus -->
-<img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
-<!-- End -->
+---
 
+## Getting Started
 
-##  🚫 Demo 
-- 🚫 [Demo](https://imagetopalette.netlify.app/)
+### Prerequisites
 
+- **Node.js** `>= 18` (required for the built-in `node --test` runner)
+- **npm**
 
+### Installation
 
-<!-- Garis Lurus -->
-<img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
-<!-- End -->
+```bash
+git clone https://github.com/bagussatoto/image-get-palette.git
+cd image-get-palette
+npm install
+```
 
+### Running Locally
 
+Serve the repository over a local HTTP server:
 
+```bash
+npx serve .
+```
 
-## 📌 New Feature Request and Bug Report
+Then open the local URL printed in your terminal.
 
-You can request new features or report bugs through the [**issues**](https://github.com/bagussatoto/image-get-palette/issues) menu provided by GitHub (see menu above), post new issues and we will discuss there. 
+> [!IMPORTANT]
+> Do not open `index.html` directly with the `file://` protocol. Browsers enforce Canvas CORS restrictions on `file://` origins, which prevents ColorThief from reading image pixels.
 
-<!-- Garis Lurus -->
-<img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
-<!-- End -->
+---
 
-## 🛒 Contribute
+## Development & Testing
 
-Anyone can [contribute](https://github.com/bagussatoto/image-get-palette/blob/main/CONTRIBUTING.md) to this project from programming, opening a manual, to introducing this product to students
-to learn to reduce the technology education gap by posting an issue in this repository.
+| Script | Purpose |
+| --- | --- |
+| `npm run dev` | Copies `src/js/` to `dist/js/` and watches `src/css/style.css` for changes |
+| `npm run minify` | Runs `build:js` and compiles minified CSS to `dist/css/style.css` (used by CI) |
+| `npm run build:js` | Copies JavaScript files from `src/js/` to `dist/js/` |
+| `npm run build:css` | Compiles and minifies Tailwind CSS output |
+| `npm test` | Runs the unit test suite in `tests/utils.test.js` |
 
-<!-- Garis Lurus -->
-<img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
-<!-- End -->
+**Workflow tip:** Always edit JavaScript inside `src/js/` (not `dist/js/`), then run `npm test` and `npm run minify` before committing.
 
-> 🧑🏽‍💻 | [BAGUS BUDI SATOTO ](http://github.com/bagussatoto)
-<br>
+---
 
+## Contributing
+
+Contributions, bug reports, and feature requests are welcome:
+
+1. Check existing issues or open a new one at [GitHub Issues](https://github.com/bagussatoto/image-get-palette/issues).
+2. Read [CONTRIBUTING.md](./CONTRIBUTING.md) before opening a Pull Request.
+3. Ensure `npm test` and `npm run minify` pass cleanly.
+
+---
+
+## Author
+
+**Bagus Budi Satoto** — Bachelor of Informatics, University Amikom Yogyakarta  
+GitHub: [@bagussatoto](https://github.com/bagussatoto)
+
+---
+
+## License
+
+This project is open source and available under the [MIT License](./LICENSE).
