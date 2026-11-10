@@ -86,8 +86,18 @@
 				<div class="grid md:grid-cols-2 gap-10 mt-10">
 					<img class="rounded-xl" id="image-preview" alt="Preview of the uploaded image">
 					<div class="space-y-4">
-						<h2 class="uppercase font-bold tracking-widest text-base-content/50">Dominant Color</h2>
-						<div class="flex gap-1 items-center" id="dominant-color">
+						<div class="flex flex-wrap items-center justify-between gap-4">
+							<h2 class="uppercase font-bold tracking-widest text-base-content/50">Dominant Color</h2>
+							<div class="flex items-center gap-2">
+								<span class="text-base-content/70 text-sm">Format:</span>
+								<div class="join" role="group" aria-label="Color format" id="color-format">
+									<button type="button" class="btn btn-xs join-item btn-primary" data-format="hex" aria-pressed="true">HEX</button>
+									<button type="button" class="btn btn-xs join-item" data-format="rgb" aria-pressed="false">RGB</button>
+									<button type="button" class="btn btn-xs join-item" data-format="hsl" aria-pressed="false">HSL</button>
+								</div>
+							</div>
+						</div>
+						<div class="flex gap-2 items-center" id="dominant-color">
 							Wait...
 						</div>
 						<h2 class="uppercase font-bold tracking-widest text-base-content/50">Palette</h2>
@@ -95,7 +105,7 @@
 							<label for="palette-count" class="text-base-content/70 text-sm">Colors: <span id="palette-count-label">10</span></label>
 							<input type="range" id="palette-count" min="2" max="10" value="10" class="w-40 accent-primary">
 						</div>
-						<div class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-3 grid-cols-2 gap-4" id="palette">
+						<div class="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4" id="palette">
 							Wait...
 						</div>
 					</div>
