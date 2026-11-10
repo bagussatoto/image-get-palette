@@ -7,6 +7,8 @@ const {
     normalizeFormat,
     formatColor,
     clampCount,
+    exportPaletteAsCSS,
+    exportPaletteAsJSON,
 } = require('../src/js/utils.js');
 
 test('RGBToHex converts channels to a padded hex string', () => {
@@ -52,4 +54,26 @@ test('clampCount keeps values within range', () => {
 test('clampCount falls back for invalid input', () => {
     assert.equal(clampCount(null, 2, 10, 10), 10);
     assert.equal(clampCount('abc', 2, 10, 7), 7);
+});
+
+test('exportPaletteAsCSS outputs CSS custom properties in selected format', () => {
+    const css = exportPaletteAsCSS([255, 128, 0], [[0, 0, 0], [255, 255, 255]], 'hex');
+    assert.equal(
+        css,
+        ':root {\n  --color-dominant: #ff8000;\n  --color-palette-1: #000000;\n  --color-palette-2: #ffffff;\n}\n'
+    );
+
+    const cssRgb = exportPaletteAsCSS([255, 128, 0], [[0, 0, 0]], 'rgb');
+    assert.match(cssRgb, /--color-dominant: rgb\(255, 128, 0\);/);
+    assert.match(cssRgb, /--color-palette-1: rgb\(0, 0, 0\);/);
+});
+
+test('exportPaletteAsJSON outputs formatted JSON with active format', () => {
+    const raw = exportPaletteAsJSON([255, 128, 0], [[0, 255, 0]], 'hsl');
+    const parsed = JSON.parse(raw);
+    assert.deepEqual(parsed, {
+        format: 'hsl',
+        dominant: 'hsl(30, 100%, 50%)',
+        palette: ['hsl(120, 100%, 50%)'],
+    });
 });

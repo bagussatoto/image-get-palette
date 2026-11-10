@@ -12,6 +12,8 @@ A lightweight web application that extracts the dominant color and a customizabl
 
 - **Dominant Color & Palette Extraction** — Automatically extracts the dominant color and a palette of 2 to 10 colors using ColorThief.
 - **Multiple Color Formats (HEX / RGB / HSL)** — Switch output formats on the fly and copy any color value to your clipboard with a single click.
+- **Drag & Drop Image Upload** — Drag and drop an image directly onto the preview area or pick a file via the upload button.
+- **Export Palette (CSS / JSON)** — Copy CSS custom properties or JSON directly to your clipboard, or download them as `palette.css` / `palette.json`.
 - **Light & Dark Mode** — Automatically follows system color-scheme preferences and persists your selected theme in `localStorage`.
 - **Client-Side Image Persistence** — Previews uploaded images locally without server uploads and remembers your latest image and preferences.
 

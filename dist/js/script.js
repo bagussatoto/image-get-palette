@@ -1,17 +1,29 @@
-const { RGBToHex, normalizeFormat, formatColor, clampCount } = PaletteUtils;
+const {
+    RGBToHex,
+    normalizeFormat,
+    formatColor,
+    clampCount,
+    exportPaletteAsCSS,
+    exportPaletteAsJSON,
+} = PaletteUtils;
 
 const colorThief = new ColorThief();
 const imagePreview = document.querySelector('#image-preview');
 const imageUpload = document.querySelector('#image-upload');
+const dropZone = document.querySelector('#drop-zone');
 const dominantColorEl = document.querySelector('#dominant-color');
 const paletteEl = document.querySelector('#palette');
 const paletteCountEl = document.querySelector('#palette-count');
 const paletteCountLabel = document.querySelector('#palette-count-label');
 const colorFormatEl = document.querySelector('#color-format');
+const exportActionsEl = document.querySelector('#export-actions');
 const themeToggle = document.querySelector('#theme-toggle');
 const DEFAULT_SRC = './assets/img/owner.jpg';
 const MIN_COLORS = 2;
 const MAX_COLORS = 10;
+
+let latestDominantColor = null;
+let latestPaletteColors = [];
 
 function storageGet(key) {
     try {
@@ -111,23 +123,28 @@ function renderAll() {
         const dominantColor = colorThief.getColor(imagePreview);
         const paletteColors = colorThief.getPalette(imagePreview, paletteCount);
 
+        latestDominantColor = dominantColor || null;
+        latestPaletteColors = Array.isArray(paletteColors) ? paletteColors : [];
+
         if (dominantColor) {
             dominantColorEl.innerHTML = renderSwatch(dominantColor, false);
         }
 
-        if (Array.isArray(paletteColors) && paletteColors.length > 0) {
-            paletteEl.innerHTML = paletteColors
+        if (latestPaletteColors.length > 0) {
+            paletteEl.innerHTML = latestPaletteColors
                 .map((color) => renderSwatch(color, true))
                 .join('');
         }
     } catch (err) {
         console.error('Failed to extract palette:', err);
+        latestDominantColor = null;
+        latestPaletteColors = [];
         dominantColorEl.textContent = 'Unable to extract color (open via HTTP/HTTPS server).';
         paletteEl.textContent = '-';
     }
 }
 
-/* ---------- Copy color ---------- */
+/* ---------- Copy & Export ---------- */
 function copyText(text) {
     if (navigator.clipboard && window.isSecureContext) {
         return navigator.clipboard.writeText(text);
@@ -151,6 +168,27 @@ function copyText(text) {
     });
 }
 
+function flashButtonLabel(button, tempLabel, originalLabel) {
+    button.textContent = tempLabel;
+    setTimeout(() => {
+        if (button.isConnected) {
+            button.textContent = originalLabel;
+        }
+    }, 1200);
+}
+
+function downloadTextFile(filename, content, mimeType) {
+    const blob = new Blob([content], { type: mimeType });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+}
+
 document.addEventListener('click', (e) => {
     const button = e.target.closest('.copy-color');
     if (!button) {
@@ -159,23 +197,65 @@ document.addEventListener('click', (e) => {
 
     const value = button.dataset.value;
     copyText(value)
-        .then(() => {
-            button.textContent = 'Copied!';
-        })
+        .then(() => flashButtonLabel(button, 'Copied!', value))
         .catch((err) => {
             console.warn('Unable to copy:', err);
-            button.textContent = 'Copy failed';
-        })
-        .finally(() => {
-            setTimeout(() => {
-                if (button.isConnected) {
-                    button.textContent = value;
-                }
-            }, 1200);
+            flashButtonLabel(button, 'Copy failed', value);
         });
 });
 
-/* ---------- Image loading ---------- */
+if (exportActionsEl) {
+    exportActionsEl.addEventListener('click', (e) => {
+        const button = e.target.closest('[data-export-type][data-export-mode]');
+        if (!button || (!latestDominantColor && latestPaletteColors.length === 0)) {
+            return;
+        }
+
+        const type = button.dataset.exportType;
+        const mode = button.dataset.exportMode;
+        const content =
+            type === 'css'
+                ? exportPaletteAsCSS(latestDominantColor, latestPaletteColors, colorFormat)
+                : exportPaletteAsJSON(latestDominantColor, latestPaletteColors, colorFormat);
+
+        if (mode === 'download') {
+            const filename = type === 'css' ? 'palette.css' : 'palette.json';
+            const mimeType = type === 'css' ? 'text/css' : 'application/json';
+            downloadTextFile(filename, content, mimeType);
+            return;
+        }
+
+        const originalLabel = button.dataset.label || button.textContent;
+        button.dataset.label = originalLabel;
+        copyText(content)
+            .then(() => flashButtonLabel(button, 'Copied!', originalLabel))
+            .catch((err) => {
+                console.warn('Unable to copy export:', err);
+                flashButtonLabel(button, 'Copy failed', originalLabel);
+            });
+    });
+}
+
+/* ---------- Image loading & Drag-and-Drop ---------- */
+function handleImageFile(file) {
+    if (!file) {
+        return;
+    }
+
+    if (!file.type.startsWith('image/')) {
+        alert('Looks like what you uploaded is not an image :(');
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+        const src = event.target.result;
+        imagePreview.src = src;
+        storageSet('src', src);
+    };
+    reader.readAsDataURL(file);
+}
+
 imagePreview.addEventListener('load', renderAll);
 imagePreview.addEventListener('error', () => {
     if (imagePreview.getAttribute('src') !== DEFAULT_SRC) {
@@ -186,6 +266,8 @@ imagePreview.addEventListener('error', () => {
         }
         imagePreview.src = DEFAULT_SRC;
     } else {
+        latestDominantColor = null;
+        latestPaletteColors = [];
         dominantColorEl.textContent = 'Failed to load image.';
         paletteEl.textContent = '-';
     }
@@ -203,21 +285,41 @@ if (imagePreview.complete && imagePreview.naturalWidth > 0) {
 }
 
 imageUpload.addEventListener('change', (e) => {
-    const file = e.target.files?.[0];
-    if (!file) {
-        return;
-    }
-
-    if (!file.type.startsWith('image/')) {
-        alert('Looks like what you uploaded is not an image :(');
-        return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = (event) => {
-        const src = event.target.result;
-        imagePreview.src = src;
-        storageSet('src', src);
-    };
-    reader.readAsDataURL(file);
+    handleImageFile(e.target.files?.[0]);
 });
+
+if (dropZone) {
+    const setDragState = (active) => {
+        dropZone.classList.toggle('border-primary', active);
+        dropZone.classList.toggle('bg-primary/5', active);
+    };
+
+    ['dragenter', 'dragover'].forEach((eventName) => {
+        dropZone.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setDragState(true);
+        });
+    });
+
+    ['dragleave', 'dragend'].forEach((eventName) => {
+        dropZone.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (!dropZone.contains(e.relatedTarget)) {
+                setDragState(false);
+            }
+        });
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setDragState(false);
+        handleImageFile(e.dataTransfer?.files?.[0]);
+    });
+
+    dropZone.addEventListener('click', () => {
+        imageUpload.click();
+    });
+}
