@@ -39,17 +39,21 @@
 
 <body>
 	<div class="w-full min-h-screen overflow-x-hidden relative">
-		<nav class="py-4 bg-white fixed inset-x-0 top-0 border-b border-gray-100 z-50">
+		<nav class="py-4 bg-base-100 fixed inset-x-0 top-0 border-b border-base-200 z-50">
 			<div class="container px-8 mx-auto flex items-center relative">
-				<a class="text-xl text-gray-800 font-black tracking-widest" href="#">IGP<span
+				<a class="text-xl text-base-content font-black tracking-widest" href="#">IGP<span
 						class="text-primary">.</span></a>
 				<div class="flex justify-between items-center w-full">
 					<div class="flex justify-between items-center w-full ml-6">
 						<div></div>
 						<div class="flex gap-1">
+							<button type="button" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false"
+								class="hover:bg-base-200 text-base-content/50 h-10 w-10 rounded-full grid place-items-center transition-all duration-150">
+								<i class='bx bx-moon text-xl'></i>
+							</button>
 							<a href="https://github.com/bagussatoto/" target="_blank" rel="noopener noreferrer"
 								aria-label="GitHub bagussatoto"
-								class="hover:bg-gray-50 text-gray-400 h-10 w-10 rounded-full grid place-items-center transition-all duration-150">
+								class="hover:bg-base-200 text-base-content/50 h-10 w-10 rounded-full grid place-items-center transition-all duration-150">
 								<i class='bx bxl-github text-xl'></i>
 							</a>
 						</div>
@@ -61,10 +65,10 @@
 		<main class="lg:min-h-screen flex justify-center items-center lg:mt-0 mt-28 relative">
 			<div class="container px-8 grid lg:grid-cols-2 items-center gap-y-6 gap-x-10">
 				<div class="space-y-4 lg:order-1 order-2 text-center lg:text-left">
-					<h1 class="md:text-6xl sm:text-5xl text-4xl font-black text-gray-800">Get <span
+					<h1 class="md:text-6xl sm:text-5xl text-4xl font-black text-base-content">Get <span
 							class="text-primary underline">Palettes</span> from Your <span
 							class="text-primary underline">Photos</span>!</h1>
-					<p class="text-gray-600 tracking-wide ">
+					<p class="text-base-content/70 tracking-wide ">
 						Get any color of any image you want for free! <br>
 						Project in Bagus Budi Satoto
 					</p>
@@ -82,11 +86,15 @@
 				<div class="grid md:grid-cols-2 gap-10 mt-10">
 					<img class="rounded-xl" id="image-preview" alt="Preview of the uploaded image">
 					<div class="space-y-4">
-						<h2 class="uppercase font-bold tracking-widest text-gray-400">Dominant Color</h2>
+						<h2 class="uppercase font-bold tracking-widest text-base-content/50">Dominant Color</h2>
 						<div class="flex gap-1 items-center" id="dominant-color">
 							Wait...
 						</div>
-						<h2 class="uppercase font-bold tracking-widest text-gray-400">Palette</h2>
+						<h2 class="uppercase font-bold tracking-widest text-base-content/50">Palette</h2>
+						<div class="flex items-center gap-4">
+							<label for="palette-count" class="text-base-content/70 text-sm">Colors: <span id="palette-count-label">10</span></label>
+							<input type="range" id="palette-count" min="2" max="10" value="10" class="w-40 accent-primary">
+						</div>
 						<div class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-3 grid-cols-2 gap-4" id="palette">
 							Wait...
 						</div>
@@ -96,6 +104,7 @@
 		</section>
 	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.6.0/color-thief.umd.js"></script>
+	<script src="./dist/js/utils.js"></script>
 	<script src="./dist/js/script.js"></script>
 </body>
 

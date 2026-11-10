@@ -18,5 +18,7 @@ jobs:
         node-version: 20
         cache: npm
     - run: npm ci
-    - name: Build Tailwind CSS
+    - name: Run tests
+      run: npm test
+    - name: Build JS and Tailwind CSS
       run: npm run minify
