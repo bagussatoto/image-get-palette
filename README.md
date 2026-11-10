@@ -1,29 +1,49 @@
+<div align="center">
+
 # Image to Palette
 
-A lightweight web application that extracts the dominant color and a customizable color palette from any uploaded image directly in the browser.
+**Extract dominant colors and customizable palettes from any image — 100% client-side in your browser.**
 
-**Live Demo:** [imagetopalette.netlify.app](https://imagetopalette.netlify.app/)
+[![Build CSS CI](https://github.com/bagussatoto/image-get-palette/actions/workflows/jekyll.yml/badge.svg)](https://github.com/bagussatoto/image-get-palette/actions/workflows/jekyll.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+[![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Live Demo](https://img.shields.io/badge/Demo-Netlify-00C7B7?logo=netlify&logoColor=white)](https://imagetopalette.netlify.app/)
+
+[Live Demo](https://imagetopalette.netlify.app/) · [Features](#features) · [Getting Started](#getting-started) · [Project Structure](#project-structure) · [Contributing](#contributing)
 
 ![Image to Palette Preview](./assets/ss/hasil.png)
+
+</div>
+
+---
+
+## Overview
+
+**Image to Palette** is a lightweight, zero-backend web application built with Vanilla JavaScript, Tailwind CSS, DaisyUI, and ColorThief. Upload or drop an image to instantly inspect its dominant color and extract a clean palette, switch between **HEX**, **RGB**, and **HSL** formats, copy individual swatches, or export the entire palette to **CSS** or **JSON**.
+
+All image processing runs locally inside your browser — no images are ever uploaded to a server.
 
 ---
 
 ## Features
 
-- **Dominant Color & Palette Extraction** — Automatically extracts the dominant color and a palette of 2 to 10 colors using ColorThief.
-- **Multiple Color Formats (HEX / RGB / HSL)** — Switch output formats on the fly and copy any color value to your clipboard with a single click.
-- **Drag & Drop Image Upload** — Drag and drop an image directly onto the preview area or pick a file via the upload button.
-- **Export Palette (CSS / JSON)** — Copy CSS custom properties or JSON directly to your clipboard, or download them as `palette.css` / `palette.json`.
-- **Light & Dark Mode** — Automatically follows system color-scheme preferences and persists your selected theme in `localStorage`.
-- **Client-Side Image Persistence** — Previews uploaded images locally without server uploads and remembers your latest image and preferences.
+| Feature | Description |
+| --- | --- |
+| **Dominant Color & Palette** | Extracts the primary dominant color and a palette of **2 to 10** colors via ColorThief. |
+| **HEX / RGB / HSL Switcher** | Toggle output formats on the fly; both preview labels and copied values update immediately. |
+| **One-Click Copy** | Click any swatch value to copy it to your clipboard (with `execCommand` fallback for older contexts). |
+| **Drag & Drop Upload** | Drag and drop images directly onto the preview area, or click to select a file with `image/*` validation. |
+| **CSS & JSON Export** | Copy `:root` CSS custom properties or structured JSON, or download `palette.css` / `palette.json`. |
+| **Light & Dark Mode** | Syncs with OS `prefers-color-scheme` on first visit and persists manual theme selection. |
+| **Local Persistence** | Remembers your last image, color format, palette size, and theme safely in `localStorage`. |
 
 ---
 
 ## Tech Stack
 
-- **Markup & Styling:** HTML5, [Tailwind CSS](https://tailwindcss.com/), [DaisyUI](https://daisyui.com/), [Boxicons](https://boxicons.com/)
-- **Logic & Color Extraction:** Vanilla JavaScript, [ColorThief](https://lokeshdhakar.com/projects/color-thief/)
-- **Tooling & Testing:** Node.js (`node --test`), GitHub Actions CI
+- **Frontend:** HTML5, [Tailwind CSS v3](https://tailwindcss.com/), [DaisyUI v4](https://daisyui.com/), [Boxicons](https://boxicons.com/)
+- **Color Extraction:** [ColorThief](https://lokeshdhakar.com/projects/color-thief/) (loaded via CDN)
+- **Tooling & Testing:** [Node.js](https://nodejs.org/) (`node --test`), [GitHub Actions](.github/workflows/jekyll.yml)
 
 ---
 
@@ -31,16 +51,23 @@ A lightweight web application that extracts the dominant color and a customizabl
 
 ```text
 image-get-palette/
-├── .github/workflows/   # CI workflow (unit tests & CSS/JS build)
-├── assets/              # Favicons, sample image, and README screenshot
-├── dist/                # Generated CSS & JS bundles loaded by index.html
-├── scripts/             # Build helper scripts (build-js.js)
+├── .github/workflows/   # GitHub Actions CI (runs unit tests and production build)
+├── assets/
+│   ├── ico/             # Favicons and touch/tile icons
+│   ├── img/             # Default sample photo
+│   └── ss/              # Application screenshot
+├── dist/
+│   ├── css/             # Compiled & minified Tailwind CSS bundle
+│   └── js/              # Built JavaScript files referenced by index.html
+├── scripts/
+│   └── build-js.js      # Copies source JS files from src/js/ to dist/js/
 ├── src/
-│   ├── css/             # Tailwind CSS entrypoint
-│   └── js/              # Source JavaScript (script.js, utils.js)
-├── tests/               # Unit tests (utils.test.js)
-├── index.html           # Application entry page
-├── package.json         # Scripts and devDependencies
+│   ├── css/             # Tailwind CSS entrypoint (style.css)
+│   └── js/              # Application source code (script.js, utils.js)
+├── tests/
+│   └── utils.test.js    # Unit tests for color conversion, clamping, and exporters
+├── index.html           # Main HTML entry page
+├── package.json         # npm scripts and devDependencies
 └── tailwind.config.js   # Tailwind CSS & DaisyUI configuration
 ```
 
@@ -50,8 +77,8 @@ image-get-palette/
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (v18+ recommended; `node --test` is used for unit tests)
-- npm
+- **Node.js** `>= 18` (required for the built-in `node --test` runner)
+- **npm**
 
 ### Installation
 
@@ -63,36 +90,40 @@ npm install
 
 ### Running Locally
 
-Serve the project over HTTP using a local static server:
+Serve the repository over a local HTTP server:
 
 ```bash
 npx serve .
 ```
 
-Open the local URL printed in your terminal.
+Then open the local URL printed in your terminal.
 
-> **Note:** Do not open `index.html` directly via the `file://` protocol. Browsers block reading image pixel data across `file://` origins (CORS), which prevents ColorThief from generating palettes.
-
-### Available Scripts
-
-| Command | Description |
-| --- | --- |
-| `npm run dev` | Copies `src/js` to `dist/js` and watches `src/css/style.css` for changes |
-| `npm run minify` | Builds `src/js` to `dist/js` and generates minified `dist/css/style.css` |
-| `npm run build:js` | Copies JavaScript source files from `src/js/` to `dist/js/` |
-| `npm run build:css` | Compiles and minifies Tailwind CSS output to `dist/css/style.css` |
-| `npm test` | Runs unit tests in `tests/` using Node's built-in test runner |
-
-Edit JavaScript source files in `src/js/` rather than `dist/js/`, and run `npm run minify` and `npm test` before committing.
+> [!IMPORTANT]
+> Do not open `index.html` directly with the `file://` protocol. Browsers enforce Canvas CORS restrictions on `file://` origins, which prevents ColorThief from reading image pixels.
 
 ---
 
-## Contributing & Issue Reporting
+## Development & Testing
 
-Contributions, bug reports, and feature suggestions are welcome:
+| Script | Purpose |
+| --- | --- |
+| `npm run dev` | Copies `src/js/` to `dist/js/` and watches `src/css/style.css` for changes |
+| `npm run minify` | Runs `build:js` and compiles minified CSS to `dist/css/style.css` (used by CI) |
+| `npm run build:js` | Copies JavaScript files from `src/js/` to `dist/js/` |
+| `npm run build:css` | Compiles and minifies Tailwind CSS output |
+| `npm test` | Runs the unit test suite in `tests/utils.test.js` |
 
-- Report bugs or request features via [GitHub Issues](https://github.com/bagussatoto/image-get-palette/issues).
-- Follow the contribution guidelines in [CONTRIBUTING.md](./CONTRIBUTING.md) when submitting a Pull Request.
+**Workflow tip:** Always edit JavaScript inside `src/js/` (not `dist/js/`), then run `npm test` and `npm run minify` before committing.
+
+---
+
+## Contributing
+
+Contributions, bug reports, and feature requests are welcome:
+
+1. Check existing issues or open a new one at [GitHub Issues](https://github.com/bagussatoto/image-get-palette/issues).
+2. Read [CONTRIBUTING.md](./CONTRIBUTING.md) before opening a Pull Request.
+3. Ensure `npm test` and `npm run minify` pass cleanly.
 
 ---
 
@@ -101,6 +132,8 @@ Contributions, bug reports, and feature suggestions are welcome:
 **Bagus Budi Satoto** — Bachelor of Informatics, University Amikom Yogyakarta  
 GitHub: [@bagussatoto](https://github.com/bagussatoto)
 
+---
+
 ## License
 
-Licensed under the [MIT License](./LICENSE).
+This project is open source and available under the [MIT License](./LICENSE).

@@ -52,9 +52,15 @@ Dokumen ini merangkum seluruh temuan evaluasi, perbaikan error, pembersihan konf
    - Menambahkan slider `#palette-count` (rentang `2–10`, divalidasi oleh [`clampCount`](src/js/utils.js)) yang langsung merender ulang palet dan menyimpan pilihan ke `localStorage` (`paletteCount`).
 3. **Mode Gelap / Terang (Dark Mode)**
    - Menambahkan tombol toggle `#theme-toggle` di navbar, mendeteksi preferensi sistem (`prefers-color-scheme: dark`) secara awal, dan menyimpan pilihan ke `localStorage` (`theme`).
-4. **Struktur `src/js/` & Unit Test**
+4. **Drag & Drop Gambar**
+   - Membungkus `#image-preview` ke dalam `#drop-zone` di `index.html` dengan highlight visual saat file diseret (`border-primary`, `bg-primary/5`) dan dukungan klik langsung untuk membuka dialog pilih file.
+   - Menyatukan validasi file antara tombol upload dan drag & drop di `handleImageFile` (`src/js/script.js`).
+5. **Ekspor Palet CSS & JSON**
+   - Menambahkan [`exportPaletteAsCSS`](src/js/utils.js) (`:root` custom properties) dan [`exportPaletteAsJSON`](src/js/utils.js) mengikuti format aktif (**HEX / RGB / HSL**).
+   - Menambahkan tombol **Copy CSS**, **Download .css**, **Copy JSON**, dan **Download .json** di `index.html`.
+6. **Struktur `src/js/` & Unit Test**
    - Memisahkan logika utilitas ke `src/js/utils.js` dan logika UI ke `src/js/script.js`, dengan skrip salin `scripts/build-js.js` ke `dist/js/`.
-   - Menambahkan unit test di `tests/utils.test.js` untuk `RGBToHex`, `RGBToString`, `RGBToHSL`, `normalizeFormat`, `formatColor`, dan `clampCount`.
+   - Menambahkan unit test di `tests/utils.test.js` untuk `RGBToHex`, `RGBToString`, `RGBToHSL`, `normalizeFormat`, `formatColor`, `clampCount`, `exportPaletteAsCSS`, dan `exportPaletteAsJSON`.
 
 ---
 
@@ -69,12 +75,15 @@ Dokumen ini merangkum seluruh temuan evaluasi, perbaikan error, pembersihan konf
 | `86cf5a6` | `docs: update install and run instructions in README` | `chore/readme-browserslist` |
 | `a0b6006` | `feat: add copy hex, palette size slider, dark mode, unit tests and src/js build` | `feat/palette-features` |
 | `65fc740` | `feat: add RGB and HSL color format selector and copy support` | `feat/palette-features` |
+| `9c447a2` | `docs: add summary of fixes and new features` | `feat/palette-features` |
+| `53d330b` | `docs: rewrite README with professional project documentation` | `feat/palette-features` |
+| `c6a78c8` | `feat: add drag-and-drop upload and CSS/JSON palette export` | `feat/palette-features` |
 
 ---
 
 ## 4. Hasil Verifikasi
 
-- `npm test`: **7/7 unit test lulus** (0 gagal).
+- `npm test`: **9/9 unit test lulus** (0 gagal).
 - `node --check src/js/utils.js` & `node --check src/js/script.js`: lulus tanpa error sintaks.
 - `npm run minify`: build `dist/js/` dan `dist/css/style.css` berhasil (exit code 0); seluruh utility class baru terverifikasi hadir di CSS.
 - `npm audit`: **0 vulnerabilities**.
