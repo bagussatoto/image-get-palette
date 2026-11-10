@@ -1,4 +1,4 @@
-const { RGBToHex, clampCount } = PaletteUtils;
+const { RGBToHex, normalizeFormat, formatColor, clampCount } = PaletteUtils;
 
 const colorThief = new ColorThief();
 const imagePreview = document.querySelector('#image-preview');
@@ -7,6 +7,7 @@ const dominantColorEl = document.querySelector('#dominant-color');
 const paletteEl = document.querySelector('#palette');
 const paletteCountEl = document.querySelector('#palette-count');
 const paletteCountLabel = document.querySelector('#palette-count-label');
+const colorFormatEl = document.querySelector('#color-format');
 const themeToggle = document.querySelector('#theme-toggle');
 const DEFAULT_SRC = './assets/img/owner.jpg';
 const MIN_COLORS = 2;
@@ -49,6 +50,35 @@ themeToggle.addEventListener('click', () => {
     storageSet('theme', next);
 });
 
+/* ---------- Color format ---------- */
+let colorFormat = normalizeFormat(storageGet('colorFormat'));
+
+function updateFormatButtons() {
+    if (!colorFormatEl) {
+        return;
+    }
+    for (const btn of colorFormatEl.querySelectorAll('[data-format]')) {
+        const active = btn.dataset.format === colorFormat;
+        btn.classList.toggle('btn-primary', active);
+        btn.setAttribute('aria-pressed', String(active));
+    }
+}
+
+updateFormatButtons();
+
+if (colorFormatEl) {
+    colorFormatEl.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-format]');
+        if (!btn) {
+            return;
+        }
+        colorFormat = normalizeFormat(btn.dataset.format);
+        storageSet('colorFormat', colorFormat);
+        updateFormatButtons();
+        renderAll();
+    });
+}
+
 /* ---------- Palette count ---------- */
 let paletteCount = clampCount(storageGet('paletteCount'), MIN_COLORS, MAX_COLORS, MAX_COLORS);
 paletteCountEl.min = MIN_COLORS;
@@ -66,8 +96,10 @@ paletteCountEl.addEventListener('input', () => {
 /* ---------- Rendering ---------- */
 function renderSwatch(color, withWrapper = false) {
     const hexColor = RGBToHex(color[0], color[1], color[2]);
-    const content = `<div class="shadow-xl h-10 w-10 rounded-full" style="background-color: ${hexColor}; --tw-shadow-color: rgb(${color[0]} ${color[1]} ${color[2]} / 0.4); --tw-shadow: var(--tw-shadow-colored);"></div><button type="button" class="copy-hex font-bold uppercase text-base-content hover:underline" data-hex="${hexColor}" title="Click to copy" aria-label="Copy ${hexColor}">${hexColor}</button>`;
-    return withWrapper ? `<div class="flex gap-1 items-center">${content}</div>` : content;
+    const displayValue = formatColor(color, colorFormat);
+    const caseClass = colorFormat === 'hex' ? 'uppercase' : '';
+    const content = `<div class="shrink-0 shadow-xl h-10 w-10 rounded-full" style="background-color: ${hexColor}; --tw-shadow-color: rgb(${color[0]} ${color[1]} ${color[2]} / 0.4); --tw-shadow: var(--tw-shadow-colored);"></div><button type="button" class="copy-color font-bold text-sm ${caseClass} text-base-content hover:underline text-left break-all" data-value="${displayValue}" title="Click to copy" aria-label="Copy ${displayValue}">${displayValue}</button>`;
+    return withWrapper ? `<div class="flex gap-2 items-center">${content}</div>` : content;
 }
 
 function renderAll() {
@@ -95,7 +127,7 @@ function renderAll() {
     }
 }
 
-/* ---------- Copy hex ---------- */
+/* ---------- Copy color ---------- */
 function copyText(text) {
     if (navigator.clipboard && window.isSecureContext) {
         return navigator.clipboard.writeText(text);
@@ -120,13 +152,13 @@ function copyText(text) {
 }
 
 document.addEventListener('click', (e) => {
-    const button = e.target.closest('.copy-hex');
+    const button = e.target.closest('.copy-color');
     if (!button) {
         return;
     }
 
-    const hex = button.dataset.hex;
-    copyText(hex)
+    const value = button.dataset.value;
+    copyText(value)
         .then(() => {
             button.textContent = 'Copied!';
         })
@@ -136,7 +168,9 @@ document.addEventListener('click', (e) => {
         })
         .finally(() => {
             setTimeout(() => {
-                button.textContent = hex;
+                if (button.isConnected) {
+                    button.textContent = value;
+                }
             }, 1200);
         });
 });
