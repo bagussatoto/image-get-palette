@@ -63,9 +63,12 @@
   git clone https://github.com/bagussatoto/image-get-palette.git
   ``` 
   
-- <code>cd image get palette</code>
+- <code>cd image-get-palette</code>
 - <code>npm install</code>
-- <code>npm run dev</code>
+- <code>npm run dev</code> (watch and rebuild the Tailwind CSS while editing)
+- <code>npm run minify</code> (one-time minified CSS build, used by CI)
+- Serve the folder with a local web server, for example <code>npx serve .</code>, then open the URL it prints.
+  Do not open <code>index.html</code> directly via <code>file://</code>, because the browser blocks reading image pixels (CORS) and the palette cannot be generated.
 
 <!-- Garis Lurus -->
 <img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="1000"/> 
