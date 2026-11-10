@@ -33,7 +33,7 @@
 		href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
 		rel="stylesheet">
 	<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-	<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+	<meta name="description" content="Generate dominant color and color palette from any image you upload.">
 	<title>Image to Palette</title>
 </head>
 
@@ -70,7 +70,7 @@
 					</p>
 					<a class="btn btn-primary gap-1 lg:inline-flex hidden" href="#try">Try Now!</a>
 				</div>
-				<img class="rounded-xl lg:order-2 order-1 mx-auto" src="./assets/img/owner.jpg" alt="">
+				<img class="rounded-xl lg:order-2 order-1 mx-auto" src="./assets/img/owner.jpg" alt="Sample photo used for palette demo">
 			</div>
 		</main>
 
@@ -80,13 +80,13 @@
 				<input type="file" id="image-upload" accept="image/*" class="absolute opacity-0 pointer-events-none">
 
 				<div class="grid md:grid-cols-2 gap-10 mt-10">
-					<img class="rounded-xl" id="image-preview" alt="Image Upload">
+					<img class="rounded-xl" id="image-preview" alt="Preview of the uploaded image">
 					<div class="space-y-4">
 						<h2 class="uppercase font-bold tracking-widest text-gray-400">Dominant Color</h2>
 						<div class="flex gap-1 items-center" id="dominant-color">
 							Wait...
 						</div>
-						<h2 class="uppercase font-bold tracking-widest text-gray-400">Pallete</h2>
+						<h2 class="uppercase font-bold tracking-widest text-gray-400">Palette</h2>
 						<div class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-3 grid-cols-2 gap-4" id="palette">
 							Wait...
 						</div>
